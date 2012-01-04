@@ -1001,13 +1001,11 @@ fun! s:Strlen(x)
    " 'tabstop', wide CJK as 2 rather than 1, Arabic alif as zero when immediately 
    " preceded by lam, one otherwise, etc.)
    " (comment from TM, solution from me)
-   let modkeep= &l:mod
-   exe "norm! o\<esc>"
+   " (modified by @todesking)
+   new
    call setline(line("."),a:x)
    let ret= virtcol("$") - 1
-   d
-   let &l:mod= modkeep
-
+   bdelete!
   else
    " at least give a decent default
    ret= strlen(a:x)
